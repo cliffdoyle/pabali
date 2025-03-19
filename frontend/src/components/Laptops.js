@@ -1,6 +1,7 @@
-// src/components/Laptops.js
+// src/components/Laptops.js (updated)
 import React, { useState, useEffect } from 'react';
 import { client } from '../client';
+import { urlFor } from '../utils/imageUrl';
 import './Laptops.css';
 
 const Laptops = () => {
@@ -18,7 +19,7 @@ const Laptops = () => {
         price,
         description,
         stock,
-        "imageUrl": image.asset->url,
+        image,
         "brand": brand->name
       }
     `)
@@ -61,7 +62,9 @@ const Laptops = () => {
         {filteredLaptops.map((laptop) => (
           <div key={laptop._id} className="laptop-card">
             <div className="laptop-image">
-              <img src={laptop.imageUrl} alt={laptop.name} />
+              {laptop.image && (
+                <img src={urlFor(laptop.image).width(300).height(200).url()} alt={laptop.name} />
+              )}
               {laptop.stock <= 5 && laptop.stock > 0 && (
                 <span className="stock-badge low">Only {laptop.stock} left!</span>
               )}
@@ -73,7 +76,7 @@ const Laptops = () => {
               <h3>{laptop.name}</h3>
               <p className="brand">{laptop.brand}</p>
               <p className="price">${laptop.price}</p>
-              <p className="description">{laptop.description.substring(0, 100)}...</p>
+              <p className="description">{laptop.description ? laptop.description.substring(0, 100) + '...' : 'No description available'}</p>
               <button className="view-details">View Details</button>
             </div>
           </div>

@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { client } from '../client';
+import { urlFor } from '../utils/imageUrl';
 import './Home.css';
 
 const Home = () => {
@@ -17,13 +18,14 @@ const Home = () => {
   }, []);
 
   if (loading) return <div className="loading">Loading...</div>;
+  if (!home) return <div className="loading">No home data found</div>;
 
   return (
     <div className="home">
       <div className="banner">
         {home.bannerImage && (
           <img 
-            src={`https://cdn.sanity.io/images/your-project-id/production/${home.bannerImage.asset._ref.replace('image-', '').replace('-jpg', '.jpg')}`} 
+            src={urlFor(home.bannerImage).width(1200).url()} 
             alt="Banner" 
           />
         )}
