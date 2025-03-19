@@ -76,7 +76,8 @@ const Laptops = () => {
               <h3>{laptop.name}</h3>
               <p className="brand">{laptop.brand}</p>
               <p className="price">${laptop.price}</p>
-              <p className="description">{laptop.description ? laptop.description.substring(0, 100) + '...' : 'No description available'}</p>
+                    <p className="description">{laptop.description ? laptop.description.substring(0, 100) + '...' : 'No description available'}</p>
+                    <Link to={`/laptops/${laptop._id}`}></Link>
               <button className="view-details">View Details</button>
             </div>
           </div>
