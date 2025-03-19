@@ -6,6 +6,8 @@ import Laptops from './components/Laptops';
 import Reviews from './components/Reviews';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+// In App.js
+import LaptopDetail from './components/LaptopDetail';
 import './App.css';
 
 function App() {
